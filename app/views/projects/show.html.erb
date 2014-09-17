@@ -5,7 +5,13 @@
 </h2>
 <ul class='list-group'>
 <% @project.tasks.each do |task| %>
-  <li class='list-group-item'><%= task.name %></li>
+  <li class='list-group-item <%= completed_class(task) %>'>
+    <%= form_for(task) do |f| %>
+      <%= f.check_box(:completed) %>
+      <%= task.name %>
+      <%= f.submit("Save", class: 'btn btn-xs btn-default pull-right') %>
+    <% end %>
+  </li>
 <% end %>
 </ul>
 
